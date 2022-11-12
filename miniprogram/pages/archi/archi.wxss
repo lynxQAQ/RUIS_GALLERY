@@ -1,0 +1,66 @@
+
+/* 搜索 */
+.searchBtn{
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  width:120rpx;
+  height:60rpx;
+  background-color:rgb(163,171,192);
+  color: #261725;
+  font-size:22rpx;
+  font-weight:700;
+}
+
+.searchBtn_hover{
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  width:120rpx;
+  height:60rpx;
+  background-color:rgb(118,119,142);
+  color: #261725;
+  font-size:22rpx;
+  font-weight:700;
+}
+/* 搜索 */
+
+/* 展示内容 */
+.thingScroll{
+  width: 750rpx;
+  height:80vh;
+  /* background-color: rgb(150,215,193,0.8); */
+}
+
+/* 展示内容 */
+
+/* 图片信息区 */
+.imgInfoArea{
+  width:320rpx;
+  min-height:120rpx;
+  background-color:rgb(163,171,192,0.05);
+  margin-top:-20rpx;
+  border-bottom-left-radius:20rpx;
+  border-bottom-right-radius:20rpx;
+}
+
+.contentBox{
+  /* margin-left: 20rpx; */
+  /* width: 220rpx; */
+  width: 320rpx;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.infoTextArea{
+  display:flex;
+  flex-direction:column;
+  font-size:24rpx;
+  /* color:rgb(118,119,142); */
+  color:#261725;
+}
+/* 图片信息区 */

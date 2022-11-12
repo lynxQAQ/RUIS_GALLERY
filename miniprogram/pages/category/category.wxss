@@ -1,0 +1,36 @@
+/* 分类栏 */
+.categoryArea{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  width:750rpx;
+  height:460rpx;
+}
+
+.categoryBox{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width:350rpx;
+}
+/* 分类栏 */
+
+/* 分类图片 */
+.categoryPicShown{
+  width:340rpx;
+  height:420rpx;
+  border-radius:40rpx;
+  background-color:rgb(118,119,142,0.1);
+  overflow: hidden;
+}
+/* 分类图片 */
+
+/* 分类文字 */
+.categoryText{
+  color:rgb(118,119,142);
+  font-size:24rpx;
+  font-weight:700;
+}
+/* 分类文字 */

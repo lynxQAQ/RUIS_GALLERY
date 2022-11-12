@@ -1,0 +1,106 @@
+<wxs module="m1">
+  var arrayfind = function (arr, string) { 
+    if (arr !== undefined) { 
+    return arr.indexOf(string) } else return -1
+  }
+  module.exports.arrayfind = arrayfind;
+</wxs>
+
+<view style="width:750rpx;height:100vh;overflow-x:hidden;background-color:rgb(230,234,242);">
+
+  <!-- 预留上传数据库按键 -->
+  <!-- <view style="margin:auto;display:flex;justify-content:center;align-items:center;width:300rpx;height:60rpx;background-color:rgb(118,119,142);" bindtap="uploadAdmin">uploadAdmin</view> -->
+
+  <!-- 上传区 -->
+  <view style="display:flex;flex-direction:column;align-items:center;margin-top:40rpx;width:750rpx;min-height:1200rpx;">
+
+    <view style="display:flex;flex-direction:row;width:750rpx;align-items:center;justify-content:center;">
+      <!-- 封面展示 -->
+      <view style="display:flex;flex-direction:column;align-items:center;width:300rpx;">
+        <view style="font-weight:700;color:rgb(118,119,142);margin-bottom:20rpx;">当前封面</view>
+        <view style="width:200rpx;height:400rpx;background-color:rgb(163,171,192);border-radius:10rpx;">
+          <image style="width:200rpx;height:400rpx;border-radius:10rpx;overflow:hidden;" mode="aspectFill" src="{{coverImg}}"></image>
+          <!-- <view style="position:absolute;width:200rpx;display:flex;justify-content:center;align-items:center;top:300rpx;font-size:12rpx;font-weight:700;color:{{coverSloganColor}};z-index:10;">{{coverSlogan}}</view> -->
+        </view>
+      </view>
+
+      <!-- 更换后封面展示 -->
+      <view style="display:flex;flex-direction:column;align-items:center;width:300rpx;">
+        <view style="font-weight:700;color:rgb(118,119,142);margin-bottom:20rpx;">新封面</view>
+        <view style="width:200rpx;height:400rpx;background-color:rgb(163,171,192);border-radius:10rpx;">
+          <view wx:if="{{newcoverSlogan.length==0 && picUrl.length==0}}" style="width:200rpx;height:400rpx;display:flex;justify-content:center;align-items:center;justify-content:center;font-size:80rpx;" bindtap="uploadImg">+</view>
+
+          <image wx:if="{{newcoverSlogan.length!==0 && picUrl.length==0}}" style="width:200rpx;height:400rpx;border-radius:10rpx;overflow:hidden;" mode="aspectFill" src="{{coverImg}}"></image>
+
+          <image wx:if="{{picUrl.length!==0}}" style="width:200rpx;height:400rpx;border-radius:10rpx;overflow:hidden;" mode="aspectFill" src="{{picUrl[0]}}" data-index="{{index}}"
+          bindlongpress="deleteImg" bindtap="previewImg"></image>
+
+          <view style="position:absolute;width:200rpx;display:flex;justify-content:center;align-items:center;top:300rpx;font-size:12rpx;font-weight:700;color:{{newcoverSloganColor}};z-index:10;">{{newcoverSlogan}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 预留区 -->
+    <view style="width:750rpx;height:60rpx;"></view>
+
+    <!-- 图片上传 -->
+    <view style="display:flex;justify-content:center;align-items:center;font-weight:700;width:680rpx;height:60rpx;background-color:rgb(163,171,192);color:rgb(118,119,142);border-radius:20rpx;" bindtap="uploadImg">上传新封面图片</view>
+
+    <!-- 图片展示 -->
+    <view style="display:flex;flex-direction:column;">
+      <!-- <view class="postPicShown" wx:if="{{picUrl.length==0}}"></view>
+      <view class="postPicShown" wx:else>
+        <view class="postPicArea" wx:for="{{picUrl}}" wx:key="index">
+          <image mode="widthFix" src="{{item}}" class="userPostPic" data-index="{{index}}"
+          bindlongpress="deleteImg" bindtap="previewImg"></image>
+        </view>
+      </view> -->
+
+      <view style="display:flex;justify-content:center" wx:if="{{picUrl.length!==0}}">
+          <text style="margin-top:20rpx;font-size:26rpx;font-style:700;color:rgb(118,119,142);">长按新封面可删除图片</text>
+      </view>
+    </view>
+
+    <!-- 预留区 -->
+    <view style="width:750rpx;height:60rpx;"></view>
+
+    <!-- slogan上传 -->
+    <view>
+      <van-field custom-style="padding:10rpx;margin-top:0rpx;width:300rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.6);color:#261725;border-radius:20rpx;"
+      placeholder="输入展示文字" placeholder-style="color:rgb(118,119,142);"
+      value="{{newcoverSlogan}}" bind:input="sloganInput" maxlength="20" cursor="auto"
+      border="{{false}}"></van-field>
+    </view>
+
+    <!-- 间隔区 -->
+    <view style="width:750rpx;height:20rpx;"></view>
+
+    <!-- 字体颜色上传 -->
+    <view style="display:flex;flex-direction:row;align-items:center;">
+      <van-field custom-style="padding:10rpx;margin-top:0rpx;width:300rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.6);color:#261725;border-radius:20rpx;"
+      placeholder="输入字体颜色（#或rgb）" placeholder-style="color:rgb(118,119,142);"
+      value="{{newcoverSloganColor}}" bind:input="colorInput" maxlength="20" cursor="auto"
+      border="{{false}}"></van-field>
+      <view wx:if="{{newcoverSloganColor.length==0}}" style="margin-left:20rpx;width:40rpx;height:40rpx;border-radius:50%;background-color:{{coverSloganColor}}"></view>
+      <view wx:if="{{newcoverSloganColor.length!==0}}" style="margin-left:20rpx;width:40rpx;height:40rpx;border-radius:50%;background-color:{{newcoverSloganColor}}"></view>
+    </view>
+
+    <!-- 间隔区 -->
+    <view style="width:750rpx;height:60rpx;"></view>
+
+    <!-- 确认上传 -->
+    <view style="display:flex;justify-content:center;align-items:center;font-weight:700;width:680rpx;height:60rpx;background-color:rgb(163,171,192);color:rgb(118,119,142);border-radius:20rpx;" bindtap="confirmUpload">确认更新</view>
+
+    <!-- 间隔区 -->
+    <view style="width:750rpx;height:20rpx;"></view>
+
+    <!-- 取消上传 -->
+    <view style="display:flex;justify-content:center;align-items:center;font-weight:700;width:680rpx;height:60rpx;background-color:rgb(163,171,192);color:rgb(118,119,142);border-radius:20rpx;" bindtap="cancelUpload">取消更新</view>
+
+  </view>
+
+  <!-- 底部预留区 -->
+  <view style="width:750rpx;height:100rpx;"></view>
+
+  
+</view>

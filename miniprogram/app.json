@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/all/all",
+    "pages/category/category",
+    "pages/way/way",
+    "pages/archi/archi",
+    "pages/commercial/commercial",
+    "pages/art/art",
+    "pages/other/other",
+    "pages/upload/upload",
+    "pages/covermodi/covermodi",
+    "pages/catmodi/catmodi"
+  ],
+
+  "usingComponents": {
+    "van-transition": "@vant/weapp/transition/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index"
+  },
+
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#E6EAF2",
+    "navigationBarTitleText": "主页",
+    "navigationBarTextStyle": "white"
+  },
+
+  "tabBar": {
+
+    "backgroundColor": "#E6EAF2",
+    "color":"#A19F9E",
+    "selectedColor":"#000000",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/category/category",
+
+        "iconPath": "images/icons/Category_out.png",
+        "selectedIconPath": "images/icons/Category_in.png",
+        "text": "Category"
+      },
+      {
+        "pagePath": "pages/all/all",
+
+        "iconPath": "images/icons/All_out.png",
+        "selectedIconPath": "images/icons/All_in.png",
+        "text": "Work"
+      },
+      {
+        "pagePath": "pages/way/way",
+
+        "iconPath": "images/icons/Way_off.png",
+        "selectedIconPath": "images/icons/Way_on.png",
+        "text": "Contact"
+      }
+    ]
+  },
+
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

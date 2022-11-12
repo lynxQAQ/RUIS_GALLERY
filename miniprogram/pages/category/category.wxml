@@ -1,0 +1,77 @@
+<!-- 背景覆盖 -->
+<view style="width:750rpx;height:100vh;overflow-x:hidden;background-color:rgb(230,234,242);">
+  <van-transition show="{{transitionShown}}" duration="{{ { enter: 2500, leave: 2000 } }}" custom-style="width:750rpx;height:100vh;background-color:rgb(230,234,242);z-index:1;">
+
+    <!-- 顶部预留区 -->
+    <view style="width:750rpx;height:8vh;"></view>
+
+    <!-- 分类第一栏 -->
+    <view class="categoryArea">
+      <!-- 左分类 -->
+      <view class="categoryBox" data-url="archi" bindtap="goCategory">
+        <!-- 图片展示 -->
+        <view class="categoryPicShown">
+          <image style="width:340rpx;height:420rpx" mode="aspectFill" src="{{zeroCat.Img}}"></image>
+        </view>
+        <!-- 分类说明 -->
+        <!-- 中文 -->
+        <view class="categoryText" style="margin-top:10rpx;">{{zeroCat.CNtitle}}</view>
+        <view class="categoryText" style="font-weight:400;">{{zeroCat.ENtitle}}</view>
+      </view>
+      <!-- 左右间隔区 -->
+      <view style="width:10rpx;height:200rpx;"></view>
+
+      <!-- 右分类 -->
+      <view class="categoryBox" data-url="commercial" bindtap="goCategory">
+        <!-- 图片展示 -->
+        <view class="categoryPicShown">
+          <image style="width:340rpx;height:420rpx" mode="aspectFill" src="{{oneCat.Img}}"></image>
+        </view>
+        <!-- 分类说明 -->
+        <!-- 中文 -->
+        <view class="categoryText" style="margin-top:10rpx;">{{oneCat.CNtitle}}</view>
+        <view class="categoryText" style="font-weight:400;">{{oneCat.ENtitle}}</view>
+      </view>
+
+    </view>
+
+    <!-- 中部预留区 -->
+    <view style="width:750rpx;height:60rpx;"></view>
+
+    <!-- 分类第二栏 -->
+    <view class="categoryArea">
+      <!-- 左分类 -->
+      <view class="categoryBox" data-url="art" bindtap="goCategory">
+        <!-- 图片展示 -->
+        <view class="categoryPicShown">
+          <image style="width:340rpx;height:420rpx" mode="aspectFill" src="{{twoCat.Img}}"></image>
+        </view>
+        <!-- 分类说明 -->
+        <!-- 中文 -->
+        <view class="categoryText" style="margin-top:10rpx;">{{twoCat.CNtitle}}</view>
+        <view class="categoryText" style="font-weight:400;">{{twoCat.ENtitle}}</view>
+      </view>
+      <!-- 左右间隔区 -->
+      <view style="width:10rpx;height:200rpx;"></view>
+
+      <!-- 右分类 -->
+      <view class="categoryBox" data-url="other" bindtap="goCategory">
+        <!-- 图片展示 -->
+        <view class="categoryPicShown">
+          <image style="width:340rpx;height:420rpx" mode="aspectFill" src="{{threeCat.Img}}"></image>
+        </view>
+        <!-- 分类说明 -->
+        <!-- 中文 -->
+        <view class="categoryText" style="margin-top:10rpx;">{{threeCat.CNtitle}}</view>
+        <view class="categoryText" style="font-weight:400;">{{threeCat.ENtitle}}</view>
+      </view>
+
+    </view>
+
+    <!-- 底部预留区 -->
+    <view style="width:750rpx;height:100rpx;"></view>
+
+
+
+  </van-transition>
+</view>

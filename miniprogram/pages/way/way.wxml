@@ -1,0 +1,41 @@
+<wxs module="m1">
+  var arrayfind = function (arr, string) { 
+    if (arr !== undefined) { 
+    return arr.indexOf(string) } else return -1
+  }
+  module.exports.arrayfind = arrayfind;
+</wxs>
+
+<view style="width:750rpx;min-height:100vh;overflow-x:hidden;background-color:rgb(230,234,242);">
+
+  <!-- 顶部预留区 -->
+  <!-- <view style="width:750rpx;height:20vh;"></view> -->
+
+  <!-- <view style="display:flex;justify-content:center;">
+    <view style="width:560rpx;height:403rpx;border-radius:10rpx;overflow:hidden;">
+      <image style="width:560rpx;height:403rpx;" mode="widthFix" src="{{imgShown.way}}" bindtap="previewImg" data-url="{{imgShown.way}}"></image>
+    </view>
+  </view> -->
+
+  <!-- 有自定义背景图片 -->
+  <view wx:if="{{coverImg.length!==0}}" style="width:750rpx;min-height:100vh;overflow-x:hidden;z-index:0;display:flex;background-color:#ffffff;">
+    <view style="display:flex;justify-content:center;align-items:center;">
+      <image style="width:750rpx;" mode="widthFix" src="{{imgShown.way}}" bindtap="previewImg" data-url="{{imgShown.way}}"></image>
+    </view>
+  </view>
+
+  <!-- 封面员工通道 -->
+  <view style="position:fixed;right:0rpx;top:76vh;margin-right:40rpx;" wx:if="{{m1.arrayfind(adminList,userOpenid)!==-1}}">
+    <view style="width:120rpx;height:120rpx;border-radius:50%;background-color:rgb(118,119,142);display:flex;justify-content:center;align-items:center;font-weight:700;color:rgb(230,234,242);" bindtap="goCover">封面</view>
+  </view>
+
+  <!-- 分类通道 -->
+  <view style="position:fixed;right:0rpx;top:60vh;margin-right:40rpx;" wx:if="{{m1.arrayfind(adminList,userOpenid)!==-1}}">
+    <view style="width:120rpx;height:120rpx;border-radius:50%;background-color:rgb(118,119,142);display:flex;justify-content:center;align-items:center;font-weight:700;color:rgb(230,234,242);" bindtap="goCat">分类</view>
+  </view>
+
+  <!-- 底部预留区 -->
+  <!-- <view style="width:750rpx;height:100rpx;"></view> -->
+
+  
+</view>

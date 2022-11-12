@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "enablePullDownRefresh":false,
+  "navigationBarBackgroundColor": "#E6EAF2",
+  "navigationBarTitleText": "封面修改",
+  "navigationBarTextStyle": "white"
+}

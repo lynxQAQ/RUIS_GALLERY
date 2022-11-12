@@ -1,0 +1,43 @@
+/* #F4D999  rgb(244,217,153) 背景黄
+#EBCB84 rgb(235,203,132) 淡黄
+#CFAA52 rgb(207,170,82) 深黄
+#624D1D 褐色 */
+
+/* 申请 */
+.tipOff_box{
+  margin-top: 20rpx;
+  color:#3F58AD;
+}
+
+.tipOff_confirmArea{
+  display:flex;
+  justify-content:center;
+  margin-top:30rpx;
+}
+
+.tipOff_confirmArea .tipOff_confirmbtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rpx;
+  width: 180rpx;
+  height: 60rpx;
+  background-color: #7EA4FF;
+  color: rgb(217,241,245,1);
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.tipOff_confirmArea .tipOff_confirmbtn_hover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rpx;
+  width: 180rpx;
+  height: 60rpx;
+  background-color: rgb(255,163,38);
+  color: rgb(217,241,245,1);
+  font-size: 24rpx;
+  font-weight: 700;
+}
+/* 申请 */

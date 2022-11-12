@@ -1,0 +1,51 @@
+
+<!-- 申请管理 -->
+<van-popup show="{{applyShown}}" closeable round position="bottom" custom-style="height:300rpx;" bind:close="closeApply">
+
+  <view style="margin-top:20rpx;width:750rpx;">
+    <van-field custom-style="margin:auto;padding:10rpx;margin-top:0rpx;width:300rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.6);color:#261725;border-radius:20rpx;"
+    placeholder="输入密码" placeholder-style="color:rgb(118,119,142);"
+    value="{{password}}" bind:input="passwordInput" maxlength="20" cursor="auto" password="true"
+    border="{{false}}"></van-field>
+  </view>
+  <view wx:if="{{password == 'adminApplication'}}" class="tipOff_confirmArea">
+    <button class="tipOff_confirmbtn" hover-class="tipOff_confirmbtn_hover" bindtap="applyAdmin">确认申请</button>
+  </view>
+</van-popup>
+<!-- 申请管理 -->
+
+
+<van-transition show="{{transitionShown}}" duration="{{ { enter: 1000, leave: 2000 } }}" custom-style="width:750rpx;height:100vh;background-color:rgb(230,234,242);">
+<!-- 背景覆盖 -->
+<view style="width:750rpx;height:100vh;overflow-x:hidden;background-color:rgb(230,234,242);" bindtap="goCategory">
+
+  <!-- 有自定义背景图片 -->
+  <view wx:if="{{coverImg.length!==0}}" style="position:fixed;width:750rpx;height:101vh;overflow-x:hidden;z-index:0;">
+    <image style="position:fixed;width:750rpx;height:101vh;" mode="aspectFill" src="{{coverImg}}"></image>
+  </view>
+
+  <!-- 预留区 -->
+  <view style="height:20vh;width:750rpx;"></view>
+  <!-- logo区 -->
+  <view wx:if="{{coverImg.length==0}}" style="display:flex;justify-content:center;align-items:center;height:400rpx;width:750rpx;">
+    <image style="width:300rpx;height:300rpx;" src="../../images/logo/RUIS_logo.jpg"></image>
+  </view>
+  <!-- 不显示logo时 -->
+  <view wx:if="{{coverImg.length!==0}}" style="display:flex;justify-content:center;align-items:center;height:400rpx;width:750rpx;">
+  </view>
+
+  <!-- 预留区 -->
+  <view style="height:200rpx;width:750rpx;"></view>
+  <!-- 提示区 -->
+  <view style="color:rgb(118,119,142,0.8);width:750rpx;height:60rpx;display:flex;justify-content:center;align-items:center;">
+    <text wx:if="{{coverSlogan.length==0}}" style="font-size:30rpx;">轻触屏幕以开启插画世界</text>
+    <text wx:if="{{coverSlogan.length!==0}}" style="font-size:32rpx;z-index:20;font-weight:700;color:{{coverSloganColor}};">{{coverSlogan}}</text>
+  </view>
+
+  <!-- 管理申请通道 -->
+  <view style="position:fixed;bottom:30rpx;color:rgb(118,119,142,1);width:750rpx;height:26rpx;display:flex;justify-content:center;align-items:center;z-index:11;">
+    <text style="font-size:18rpx" catchtap="onApply">管理申请</text>
+  </view>
+</view>
+
+</van-transition>

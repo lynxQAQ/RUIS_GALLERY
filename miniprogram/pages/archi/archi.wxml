@@ -1,0 +1,209 @@
+<!-- 背景覆盖 -->
+<view style="width:750rpx;height:100vh;overflow-x:hidden;background-color:rgb(230,234,242);">
+
+  <view style="position:fixed;z-index:5;display:flex;align-items:center;height:160rpx;background-color:rgb(230,234,242);">
+
+    <!-- 搜索区 -->
+    <view style="display:flex;flex-direction:row;align-items:center;width:750rpx;height:100rpx;">
+      <!-- logo -->
+      <view style="width:80rpx;height:80rpx;border-radius:50%;background-color:#fff;margin-left:20rpx;margin-right:20rpx;">
+        <image style="width:80rpx;height:80rpx;border-radius:50%;" src="../../images/logo/RUIS_logo.jpg"></image>
+      </view>
+      <!-- 搜索框 -->
+      <view>
+        <van-field custom-style="display:flex;align-items:center;padding:10rpx;width:260rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.2);color:#261725;border-radius:20rpx;"
+        placeholder="输入关键词" placeholder-style="color:rgb(118,119,142);"
+        value="{{search}}" bind:input="searchInput" maxlength="20" cursor="auto"
+        border="{{false}}"></van-field>
+      </view>
+
+      <!-- 确认搜索 -->
+      <view wx:if="{{search.length!==0}}" class="searchBtn" hover-class="searchBtn_hover" bindtap="confirmSearch">搜索</view>
+
+      <!-- 取消搜索 -->
+      <view wx:if="{{searching}}" class="searchBtn" hover-class="searchBtn_hover" bindtap="exitSearch">退出搜索</view>
+
+    </view>
+  </view>
+
+  <!-- 顶部预留 与 fixed 同步-->
+  <view style="width:750rpx;height:160rpx;"></view>
+
+  <!-- 搜索展示区 -->
+  <scroll-view class="thingScroll" scroll-y="true" lower-threshold="20rpx" bindscrolltolower="reachBottom" wx:if="{{searching}}">
+    <view style="display:flex;flex-direction:row;width:750rpx;justify-content:center;">
+    <!-- 图片展示 -->
+      <!-- 左 -->
+      <view style="display:flex;flex-direction:column;align-items:center;">
+        <view wx:for="{{imgInfo_search}}" wx:key="index">
+          <view wx:if="{{index%2==0}}"style="margin-left:10rpx;">
+            <!-- 图片展示 -->
+            <image style="width:320rpx;border-radius:20rpx;" mode="widthFix" src="{{item.ImgUrl[0]}}" bindtap="previewImg" data-url="{{item.ImgUrl}}"></image>
+            <!-- 图片展示 -->
+            <!-- 信息盒 -->
+            <view class="imgInfoArea">
+              <!-- 空白预留 -->
+              <view style="width:200rpx;height:20rpx;"></view>
+              
+              <!-- 内容区 -->
+              <view class="contentBox">
+                <!-- 是否为图集 -->
+                <view wx:if="{{item.ImgUrl.length>1}}" style="margin-bottom:6rpx;color:#261725;opacity:0.6;font-size:20rpx;">图集（数量：{{item.ImgUrl.length}}）</view>
+                <view wx:if="{{item.ImgUrl.length>1}}" style="width:320rpx;height:6rpx;background-color:rgb(118,119,142,0.4);margin-bottom:8rpx;"></view>
+                <!-- 标题 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameOne}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentOne}}</text>
+                </view>
+                <!-- 作者 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameTwo}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentTwo}}</text>
+                </view>
+                <!-- 底部预留 -->
+                <view style="width:200rpx;height:20rpx;"></view>
+                <!-- 底部预留 -->
+              </view>
+            </view>
+            <!-- 信息区 -->
+          </view>
+        </view>
+      </view>
+      <!-- 左 -->
+
+      <!-- 左右间隔 -->
+      <view style="width:16rpx;height:100%;"></view>
+
+      <!-- 右 -->
+      <view style="display:flex;flex-direction:column;align-items:center;">
+        <view wx:for="{{imgInfo_search}}" wx:key="index">
+          <view wx:if="{{index%2!==0}}" style="margin-left:10rpx;">
+            <!-- 图片展示 -->
+            <image style="width:320rpx;border-radius:20rpx;" mode="widthFix" src="{{item.ImgUrl[0]}}" bindtap="previewImg" data-url="{{item.ImgUrl}}"></image>
+            <!-- 图片展示 -->
+            <!-- 信息盒 -->
+            <view class="imgInfoArea">
+              <!-- 空白预留 -->
+              <view style="width:200rpx;height:20rpx;"></view>
+              
+              <!-- 内容区 -->
+              <view class="contentBox">
+                <!-- 是否为图集 -->
+                <view wx:if="{{item.ImgUrl.length>1}}" style="margin-bottom:6rpx;color:#261725;opacity:0.6;font-size:20rpx;">图集（数量：{{item.ImgUrl.length}}）</view>
+                <view wx:if="{{item.ImgUrl.length>1}}" style="width:320rpx;height:6rpx;background-color:rgb(118,119,142,0.4);margin-bottom:8rpx;"></view>
+                <!-- 标题 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameOne}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentOne}}</text>
+                </view>
+                <!-- 作者 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameTwo}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentTwo}}</text>
+                </view>
+                <!-- 底部预留 -->
+                <view style="width:200rpx;height:20rpx;"></view>
+                <!-- 底部预留 -->
+              </view>
+            </view>
+            <!-- 信息区 -->
+          </view>
+        </view>
+      </view>
+      <!-- 右 -->
+
+    </view>
+  </scroll-view>
+  <!-- 搜索展示区 -->
+  
+  <!-- 展示区 -->
+  <scroll-view class="thingScroll" scroll-y="true" lower-threshold="20rpx" bindscrolltolower="reachBottom" wx:if="{{!searching}}">
+    <view style="display:flex;flex-direction:row;width:750rpx;justify-content:center;">
+    <!-- 图片展示 -->
+      <!-- 左 -->
+      <view style="display:flex;flex-direction:column;align-items:center;">
+        <view wx:for="{{imgInfo_Archi}}" wx:key="index">
+          <view wx:if="{{index%2==0}}"style="margin-left:10rpx;">
+            <!-- 图片展示 -->
+            <image style="width:320rpx;border-radius:20rpx;" mode="widthFix" src="{{item.ImgUrl[0]}}" bindtap="previewImg" data-url="{{item.ImgUrl}}"></image>
+            <!-- 图片展示 -->
+            <!-- 信息盒 -->
+            <view class="imgInfoArea">
+              <!-- 空白预留 -->
+              <view style="width:200rpx;height:20rpx;"></view>
+              
+              <!-- 内容区 -->
+              <view class="contentBox">
+                <!-- 是否为图集 -->
+                <view wx:if="{{item.ImgUrl.length>1}}" style="margin-bottom:6rpx;color:#261725;opacity:0.6;font-size:20rpx;">图集（数量：{{item.ImgUrl.length}}）</view>
+                <view wx:if="{{item.ImgUrl.length>1}}" style="width:320rpx;height:6rpx;background-color:rgb(118,119,142,0.4);margin-bottom:8rpx;"></view>
+                <!-- 标题 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameOne}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentOne}}</text>
+                </view>
+                <!-- 作者 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameTwo}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentTwo}}</text>
+                </view>
+                <!-- 底部预留 -->
+                <view style="width:200rpx;height:20rpx;"></view>
+                <!-- 底部预留 -->
+              </view>
+            </view>
+            <!-- 信息区 -->
+          </view>
+        </view>
+      </view>
+      <!-- 左 -->
+
+      <!-- 左右间隔 -->
+      <view style="width:16rpx;height:100%;"></view>
+
+      <!-- 右 -->
+      <view style="display:flex;flex-direction:column;align-items:center;">
+        <view wx:for="{{imgInfo_Archi}}" wx:key="index">
+          <view wx:if="{{index%2!==0}}" style="margin-left:10rpx;">
+            <!-- 图片展示 -->
+            <image style="width:320rpx;border-radius:20rpx;" mode="widthFix" src="{{item.ImgUrl[0]}}" bindtap="previewImg" data-url="{{item.ImgUrl}}"></image>
+            <!-- 图片展示 -->
+            <!-- 信息盒 -->
+            <view class="imgInfoArea">
+              <!-- 空白预留 -->
+              <view style="width:200rpx;height:20rpx;"></view>
+              
+              <!-- 内容区 -->
+              <view class="contentBox">
+                <!-- 是否为图集 -->
+                <view wx:if="{{item.ImgUrl.length>1}}" style="margin-bottom:6rpx;color:#261725;opacity:0.6;font-size:20rpx;">图集（数量：{{item.ImgUrl.length}}）</view>
+                <view wx:if="{{item.ImgUrl.length>1}}" style="width:320rpx;height:6rpx;background-color:rgb(118,119,142,0.4);margin-bottom:8rpx;"></view>
+                <!-- 标题 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameOne}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentOne}}</text>
+                </view>
+                <!-- 作者 -->
+                <view class="infoTextArea">
+                  <text style="opacity:0.6;">{{item.nameTwo}}</text>
+                  <text style="font-weight:700;opacity:0.65;">{{item.contentTwo}}</text>
+                </view>
+                <!-- 底部预留 -->
+                <view style="width:200rpx;height:20rpx;"></view>
+                <!-- 底部预留 -->
+              </view>
+            </view>
+            <!-- 信息区 -->
+          </view>
+        </view>
+      </view>
+      <!-- 右 -->
+
+    </view>
+  </scroll-view>
+  <!-- 展示区 -->
+
+  <!-- 底部预留区 -->
+  <view style="width:750rpx;height:200rpx;"></view>
+
+</view>

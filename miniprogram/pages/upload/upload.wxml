@@ -1,0 +1,138 @@
+<wxs module="m1">
+  var arrayfind = function (arr, string) { 
+    if (arr !== undefined) { 
+    return arr.indexOf(string) } else return -1
+  }
+  module.exports.arrayfind = arrayfind;
+</wxs>
+
+<view style="width:750rpx;height:100vh;overflow-x:hidden;background-color:rgb(230,234,242);">
+
+  <!-- 预留上传数据库按键 -->
+  <!-- <view style="margin:auto;display:flex;justify-content:center;align-items:center;width:300rpx;height:60rpx;background-color:rgb(118,119,142);" bindtap="uploadAdmin">uploadAdmin</view> -->
+
+  <!-- 上传区 -->
+  <view style="display:flex;flex-direction:column;align-items:center;margin-top:100rpx;width:750rpx;min-height:1200rpx;">
+
+    <!-- 栏目1上传 -->
+    <view style="display:flex;flex-direction:row;">
+      <van-field custom-style="padding:10rpx;margin-top:0rpx;width:200rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.6);color:#261725;border-radius:20rpx;"
+      placeholder="默认:Title" placeholder-style="color:rgb(118,119,142);"
+      value="{{nameOne}}" bind:input="nameOneInput" maxlength="20" cursor="auto"
+      border="{{false}}"></van-field>
+
+      <view style="width:20rpx;height:40rpx;"></view>
+
+      <van-field custom-style="padding:10rpx;margin-top:0rpx;width:300rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.6);color:#261725;border-radius:20rpx;"
+      placeholder="栏目1内容" placeholder-style="color:rgb(118,119,142);"
+      value="{{contentOne}}" bind:input="contentOneInput" maxlength="20" cursor="auto"
+      border="{{false}}"></van-field>
+    </view>
+
+    <!-- 栏目2上传 -->
+    <view style="display:flex;flex-direction:row;">
+      <van-field custom-style="padding:10rpx;margin-top:20rpx;width:200rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.6);color:#261725;border-radius:20rpx;"
+      placeholder="默认:Copyright" placeholder-style="color:rgb(118,119,142);"
+      value="{{nameTwo}}" bind:input="nameTwoInput" maxlength="20" cursor="auto"
+      border="{{false}}"></van-field>
+
+      <view style="width:20rpx;height:40rpx;"></view>
+
+      <van-field custom-style="padding:10rpx;margin-top:20rpx;width:300rpx;height:60rpx;font-size:24rpx;font-weight:700;over-flow:hidden;background-color:rgb(163,171,192,0.6);color:#261725;border-radius:20rpx;"
+      placeholder="栏目2内容" placeholder-style="color:rgb(118,119,142);"
+      value="{{contentTwo}}" bind:input="contentTwoInput" maxlength="20" cursor="auto"
+      border="{{false}}"></van-field>
+    </view>
+
+    <!-- 间隔区 -->
+    <view style="width:300rpx;height:40rpx;"></view>
+
+    <!-- 分类选择区 -->
+    <!-- 分类 标签 选定池 -->
+    <view style="width:750rpx;">
+      <view style="display:flex;flex-direction:row;align-items:center;margin-top:40rpx;margin-left:40rpx;height:80rpx;">
+        <text style="font-weight:700;color:rgb(118,119,142);">已选择：</text>
+        <text style="font-weight:700;color:rgb(118,119,142);">{{selectedTags.length}}/1</text>
+        <view class="selected_categoryTags" wx:for="{{selectedTags}}" wx:key="index">
+          <view bindtap="unselectTags" data-index="{{index}}" data-value="{{item}}">{{item}}</view>
+        </view>
+        
+      </view>
+      <!-- 分割线 -->
+      <view class="chosenBlank"></view>
+      <!-- 分类 标签 选择池 -->
+      <view style="margin-top:10rpx;margin-left:22rpx;width:706rpx;">
+        <view class="unselected_categoryTags" wx:for="{{categoryTags}}" wx:key="index">
+          <view bindtap="selectTags" data-index="{{index}}" data-value="{{item}}">{{item}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 分类选择 -->
+
+    <!-- 分类说明区 -->
+    <view style="width:750rpx;">
+      <view style="margin-top:20rpx;margin-left:40rpx;font-size:24rpx;font-weight:700;color:rgb(118,119,142);">当前分类释义：</view>
+      <view style="display:flex;flex-direction:row;align-items:center;margin-top:0rpx;margin-left:40rpx;height:80rpx;font-size:18rpx;">
+        <view style="display:flex;flex-direction:column;">
+          <text class="catInitShown">分类1:</text>
+          <text class="catTitleShown">{{zeroCat.CNtitle}};</text>
+        </view>
+
+        <view style="display:flex;flex-direction:column;">
+          <text class="catInitShown">分类2:</text>
+          <text class="catTitleShown">{{oneCat.CNtitle}};</text>
+        </view>
+
+        <view style="display:flex;flex-direction:column;">
+          <text class="catInitShown">分类3:</text>
+          <text class="catTitleShown">{{twoCat.CNtitle}};</text>
+        </view>
+
+        <view style="display:flex;flex-direction:column;">
+          <text class="catInitShown">分类4:</text>
+          <text class="catTitleShown">{{threeCat.CNtitle}};</text>
+        </view>
+      </view>
+    </view>
+    <!-- 分类说明区 -->
+
+    <!-- 间隔区 -->
+    <view style="width:750rpx;height:60rpx;"></view>
+
+    <!-- 图片上传 -->
+    <view style="display:flex;justify-content:center;align-items:center;font-weight:700;width:680rpx;height:60rpx;background-color:rgb(163,171,192);color:rgb(118,119,142);border-radius:20rpx;" bindtap="uploadImg">上传图片</view>
+
+    <!-- 图片展示 -->
+    <view style="display:flex;flex-direction:column;">
+      <view class="postPicShown" wx:if="{{picUrl.length==0}}"></view>
+      <view class="postPicShown" wx:else>
+        <view class="postPicArea" wx:for="{{picUrl}}" wx:key="index">
+          <image mode="widthFix" src="{{item}}" class="userPostPic" data-index="{{index}}"
+          bindlongpress="deleteImg" bindtap="previewImg"></image>
+        </view>
+      </view>
+
+      <view style="display:flex;justify-content:center" wx:if="{{picUrl.length!==0}}">
+          <text style="margin-top:20rpx;font-size:26rpx;font-style:700;color:rgb(118,119,142);">长按可删除图片</text>
+      </view>
+    </view>
+
+    <!-- 间隔区 -->
+    <view style="width:750rpx;height:60rpx;"></view>
+
+    <!-- 确认上传 -->
+    <view style="display:flex;justify-content:center;align-items:center;font-weight:700;width:680rpx;height:60rpx;background-color:rgb(163,171,192);color:rgb(118,119,142);border-radius:20rpx;" bindtap="confirmUpload">确认上传</view>
+
+    <!-- 间隔区 -->
+    <view style="width:750rpx;height:20rpx;"></view>
+
+    <!-- 取消上传 -->
+    <view style="display:flex;justify-content:center;align-items:center;font-weight:700;width:680rpx;height:60rpx;background-color:rgb(163,171,192);color:rgb(118,119,142);border-radius:20rpx;" bindtap="cancelUpload">取消上传</view>
+
+  </view>
+
+  <!-- 底部预留区 -->
+  <view style="width:750rpx;height:100rpx;"></view>
+
+  
+</view>
